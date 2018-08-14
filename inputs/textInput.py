@@ -1,4 +1,4 @@
-# 原生套件
+
 import time
 import json
 from pprint import pprint
@@ -28,4 +28,4 @@ class TextInput(BaseInput):
         output.send_text(chat_id, name + " said " + text)
 
         if text == 'hi':
-            output.create_inline_buttons(chat_id, 'omg!! ', [['aa'], ['bb'], ['cc']])
+            output.create_inline_buttons(chat_id, 'omg!! ', ['aa', 'bb', 'cc'])
