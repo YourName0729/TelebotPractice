@@ -3,6 +3,8 @@ import time
 import json
 from pprint import pprint
 
+import telepot
+
 from outputs.baseOutput import BaseOutput
 from outputs.happyOutput import HappyOutput
 from inputs.baseInput import BaseInput
@@ -16,7 +18,7 @@ class TextInput(BaseInput):
         name = message['from']['first_name'] + message['from']['last_name']
         text = message['text']
 
-        output = HappyOutput()
+        output = BaseOutput()
 
         if chat_type != 'private':
             output.send_text(chat_id, 'no no no private only!')
@@ -24,3 +26,6 @@ class TextInput(BaseInput):
 
         # pprint(message)
         output.send_text(chat_id, name + " said " + text)
+
+        if text == 'hi':
+            output.create_inline_buttons(chat_id, 'omg!! ', [['aa'], ['bb'], ['cc']])

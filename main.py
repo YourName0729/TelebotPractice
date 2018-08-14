@@ -17,7 +17,8 @@ def main():
 
     bot = telepot.Bot(BOT_TOKEN)
     BaseOutput.bot = bot
-    MessageLoop(bot, RawInput.recieve).run_as_thread()
+    MessageLoop(bot, {'chat': RawInput.recieve,
+                      'callback_query': RawInput.on_callback_query}).run_as_thread()
     print("Bot start!")
 
     tmp_input = input()
