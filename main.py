@@ -1,6 +1,7 @@
 
 import time
 import json
+import os
 from pprint import pprint
 
 import telepot
@@ -19,11 +20,10 @@ def main():
     BaseOutput.bot = bot
     MessageLoop(bot, {'chat': RawInput.recieve,
                       'callback_query': RawInput.on_callback_query}).run_as_thread()
+                      
     print("Bot start!")
 
-    tmp_input = input()
-    while tmp_input != 'exit':
-        tmp_input = input()
-
+    # press any key to exit
+    os.system('pause>nul')
 
 main()

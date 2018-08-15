@@ -6,7 +6,6 @@ from pprint import pprint
 import telepot
 
 from outputs.baseOutput import BaseOutput
-from outputs.happyOutput import HappyOutput
 
 from inputs.textInput import TextInput
 from inputs.inlineKeyboardInput import InlineKeyboardInput
@@ -17,10 +16,14 @@ class RawInput():
     @staticmethod
     def recieve(message):
         # pprint(message)
-        content_type, chat_type, chat_id = telepot.glance(message)
+        # content_type, chat_type, chat_id = telepot.glance(message)
+        content_type = telepot.glance(message)[0]
+        
         try:
             if content_type == 'text':
                 TextInput.recieve(message)
+            # if someday we have to detect other content_type
+            # just add elif here
             else:
                 raise InputTypeError('an unknow or invalid input type', content_type)
         except InputTypeError as e:
@@ -30,7 +33,6 @@ class RawInput():
             pprint(message)
         except Exception as e:
             print(e.args)
-            # print('unknow error occurred')
         except :
             print('unknow error occurred')
     

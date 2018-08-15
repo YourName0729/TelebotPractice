@@ -6,7 +6,6 @@ from pprint import pprint
 import telepot
 
 from outputs.baseOutput import BaseOutput
-from outputs.happyOutput import HappyOutput
 from inputs.baseInput import BaseInput
 
 class TextInput(BaseInput):
@@ -24,8 +23,14 @@ class TextInput(BaseInput):
             output.send_text(chat_id, 'no no no private only!')
             return
 
-        # pprint(message)
-        output.send_text(chat_id, name + " said " + text)
-
-        if text == 'hi':
-            output.create_inline_buttons(chat_id, 'omg!! ', ['aa', 'bb', 'cc'])
+        # show info
+        print('get message (msg: {0}, id: {1}) from chat {2} by (name: {3}, id: {4})'.format(
+            text, message['message_id'], chat_id, name, message['from']['id']))
+        
+        # do_something when input text : below here 
+        # example :
+        output.send_text(chat_id, 'get plain message {0}'.format(text))
+        output.create_buttons(chat_id, 'show buttons', [['b1'], ['b2'], ['b3']])
+        output.create_inline_buttons(chat_id, 'show illine buttons', ['ib1', 'ib2', 'ib3'])
+        output.create_inline_buttons(chat_id, 'show inline buttons2', [['00', '01'], ['10', '11']])
+        
